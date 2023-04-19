@@ -11,7 +11,7 @@ def get_element(ancestor,selector=None, atribute=None, return_list=False):
         if atribute:
             return ancestor.select_one(selector)[atribute].strip()
         return ancestor.select_one(selector).text.strip()
-    except AttributeError:
+    except (AttributeError,TypeError):
         return None
 selectors={
     "opinion_id":[None, "data-entry-id"],
@@ -30,8 +30,7 @@ selectors={
     }
 
 
-# product code = input "Pota; had p
-product_code = "96685108"
+product_code = input("Podaj kod produktu: ")
 page_no=1
 all_opinions=[]
 url = f"https://www.ceneo.pl/{product_code}/#tab=reviews"
